@@ -4,6 +4,8 @@ import {
 } from "react-router-dom";
 import { Root } from "./root";
 import { ErrorPage } from "../components/error-page";
+import { MonitorPage } from "../components/monitor-page";
+import { AlertsPage } from "../components/alerts-page";
 
 export const Router = () => {
   const router = createBrowserRouter([
@@ -14,11 +16,11 @@ export const Router = () => {
       children: [
         {
           path: "/",
-          element: <h1>monitor page</h1>,
+          element: <MonitorPage />,
         },
         {
           path: "/alerts",
-          element: <h1>alert page</h1>,
+          element: <AlertsPage />,
         },
       ],
     },
