@@ -1,9 +1,16 @@
-import { tradesAtom } from "@/global-sate";
-import { Trade } from "@/types";
-import { useAtom } from "jotai";
+import { monitorPageTradesAtom } from "@/global-sate";
+import {  useAtom } from "jotai";
+import { useEffect, useRef } from "react";
 
 export const MonitorPage = () => {
-  const [trades] = useAtom(tradesAtom);
+  const [trades] = useAtom(monitorPageTradesAtom);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [trades]);
 
   const formatNumber = (num: number) =>
     num.toLocaleString("en-US", {
@@ -12,7 +19,10 @@ export const MonitorPage = () => {
     });
 
   return (
-    <div className="bg-black text-green-400 p-4 h-screen overflow-hidden font-mono text-sm">
+    <div
+      ref={scrollRef}
+      className="bg-black p-4 h-screen overflow-y-scroll font-[Inconsolata]"
+    >
       {trades.map((trade) => (
         <div key={trade.ID}>
           {`ID: ${trade.ID} | Price: $${formatNumber(

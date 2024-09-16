@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face{
+  font-family: "Inconsolata";
+  src:local("Inconsolata-Regular"),
+  url('./assets/fonts/Inconsolata-Regular.ttf') 
+}

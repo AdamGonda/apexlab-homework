@@ -7,13 +7,14 @@ import { tradesAtom } from "@/global-sate";
 const DEFAULT_SUBSCRIPTIONS = ["0~Coinbase~BTC~USD"];
 const URL = "wss://streamer.cryptocompare.com/v2?api_key=";
 const API_KEY = import.meta.env.VITE_CRYPTOCOMPARE_API_KEY;
+const TRADE_COUNT_LIMIT = 2000;
 
 export const useCryptoCompareWebSocket = (
   subscriptions: string[] = DEFAULT_SUBSCRIPTIONS
 ) => {
   const [webSocket, setWebSocket] = useState<WebSocket | undefined>(undefined);
   const [isConnected, setIsConnected] = useState(false);
-  const [trades, setTrades] = useAtom(tradesAtom);
+  const [, setTrades] = useAtom(tradesAtom);
 
   const subscribe = useCallback(() => {
     if (webSocket) return;
@@ -34,12 +35,21 @@ export const useCryptoCompareWebSocket = (
     sub.onmessage = function onStreamMessage(event) {
       const message = JSON.parse(event.data);
 
-      if (message.TYPE !== "0") return
+      if (message.TYPE !== "0") return;
 
-      const tradeExists = trades.some((trade) => trade.ID === message.ID);
-      if (tradeExists) return
+      setTrades((prev) => {
+        const tradeExists = prev.some((trade) => trade.ID === message.ID);
+        if (tradeExists) {
+          return prev;
+        }
 
-      setTrades((prevTrades) => [...prevTrades, message]);
+        if (prev.length > TRADE_COUNT_LIMIT) {
+          const oldestTrade = prev[0];
+          return prev.filter((trade) => trade.ID !== oldestTrade.ID);
+        } else {
+          return [...prev, message];
+        }
+      });
     };
 
     sub.onclose = () => {
@@ -53,7 +63,7 @@ export const useCryptoCompareWebSocket = (
 
     setWebSocket(sub);
     return sub;
-  }, [webSocket, subscriptions, setTrades]);
+  }, [webSocket, subscriptions]);
 
   const unsubscribe = useCallback(() => {
     if (webSocket) {
@@ -73,7 +83,6 @@ export const useCryptoCompareWebSocket = (
 
   return {
     isConnected,
-    trades,
     subscribe,
     unsubscribe,
   };
