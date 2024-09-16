@@ -31,8 +31,8 @@ export const AlertsPage = () => {
             key={rule.name}
             className={`p-4 rounded-lg ${rule.color} border-[3px] border-white/10`}
           >
-            <h2 className="text-xl font-bold mb-2">{rule.name}</h2>
-            <p className="text-3xl font-bold">{getAlertCount(rule)}</p>
+            <h2 className="text-xl font-semibold mb-2">{rule.name}</h2>
+            <p className="text-3xl ">{getAlertCount(rule)}</p>
           </div>
         ))}
       </div>
@@ -45,8 +45,8 @@ export const AlertsPage = () => {
 
         return (
           <div key={rule.name}>
-            <h2 className={`text-xl font-bold mb-2 ${rule.color}`}>
-              {rule.name} Alerts
+            <h2 className={`text-xl font-semibold mb-2 ${rule.color}`}>
+              {rule.name}
             </h2>
             <div className="overflow-x-auto">
               <table className="min-w-full  rounded-lg overflow-hidden">
