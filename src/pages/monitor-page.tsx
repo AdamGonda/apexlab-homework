@@ -2,7 +2,6 @@ import { monitorPageTradesAtom } from "@/global-sate";
 import { formatNumber } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { useEffect, useRef } from "react";
-import { alertRules } from "@/lib/alert-rules";
 
 export const MonitorPage = () => {
   const [trades] = useAtom(monitorPageTradesAtom);
