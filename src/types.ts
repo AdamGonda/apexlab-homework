@@ -1,4 +1,4 @@
-// SCHEMA from https://developers.ccdata.io/documentation/legacy-websockets/Trade
+// SCHEMA for Trade from https://developers.ccdata.io/documentation/legacy-websockets/Trade
 
 export type Trade = {
   TYPE: string; // "0" for trade type messages
@@ -16,3 +16,9 @@ export type Trade = {
   TSNS: number; // Nanosecond part of the reported timestamp
   RTSNS: number; // Nanosecond part of the received timestamp
 };
+
+export type AlertRule = {
+  name: string
+  condition: (price: number, quantity: number, total: number) => boolean
+  color: string
+}

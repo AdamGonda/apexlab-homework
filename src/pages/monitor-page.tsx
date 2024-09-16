@@ -1,4 +1,5 @@
 import { monitorPageTradesAtom } from "@/global-sate";
+import { formatNumber } from "@/lib/utils";
 import {  useAtom } from "jotai";
 import { useEffect, useRef } from "react";
 
@@ -12,12 +13,6 @@ export const MonitorPage = () => {
     }
   }, [trades]);
 
-  const formatNumber = (num: number) =>
-    num.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
   return (
     <div
       ref={scrollRef}
@@ -27,7 +22,7 @@ export const MonitorPage = () => {
         <div key={trade.ID}>
           {`ID: ${trade.ID} | Price: $${formatNumber(
             trade.P
-          )} | Quantity: ${formatNumber(trade.Q)} BTC | Total: $${formatNumber(
+          )} | Quantity: ${trade.Q} BTC | Total: $${formatNumber(
             trade.TOTAL
           )} | Time: ${new Date(trade.TS).toLocaleTimeString()}`}
         </div>
