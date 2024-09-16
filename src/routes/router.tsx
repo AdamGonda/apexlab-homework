@@ -3,9 +3,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Root } from "@/routes/root";
-import { ErrorPage } from "@/components/error-page";
-import { MonitorPage } from "@/components/monitor-page";
-import { AlertsPage } from "@/components/alerts-page";
+import { ErrorPage } from "@/pages/error-page";
+import { MonitorPage } from "@/pages/monitor-page";
+import { AlertsPage } from "@/pages/alerts-page";
 
 export const Router = () => {
   const router = createBrowserRouter([
