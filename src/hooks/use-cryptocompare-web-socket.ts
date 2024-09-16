@@ -33,8 +33,13 @@ export const useCryptoCompareWebSocket = (
 
     sub.onmessage = function onStreamMessage(event) {
       const message = JSON.parse(event.data);
-      console.log("Received from Cryptocompare: ", message);
-      setTrades((prev) => [...prev, message]);
+
+      if (message.TYPE !== "0") return
+
+      const tradeExists = trades.some((trade) => trade.ID === message.ID);
+      if (tradeExists) return
+
+      setTrades((prevTrades) => [...prevTrades, message]);
     };
 
     sub.onclose = () => {
