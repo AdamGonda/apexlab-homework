@@ -21,7 +21,7 @@ export const MonitorPage = () => {
   return (
     <div
       ref={scrollRef}
-      className="bg-black p-4 h-screen overflow-y-scroll font-[Inconsolata]"
+      className="bg-[#000212] p-4 h-screen overflow-y-scroll font-[Inconsolata] -mt-24 text-white"
     >
       {trades.map((trade) => (
         <div key={trade.ID}>

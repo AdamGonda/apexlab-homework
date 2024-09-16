@@ -3,6 +3,8 @@ import { Trade } from "@/types";
 
 const MONITOR_PAGE_TRADES_COUNT_LIMIT = 500;
 
+export const isConnectedAtom = atom(false);
+
 export const tradesAtom = atom<Trade[]>([]);
 
 export const monitorPageTradesAtom = atom<Trade[]>((get) => {

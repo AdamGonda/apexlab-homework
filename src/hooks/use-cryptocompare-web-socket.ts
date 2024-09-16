@@ -2,7 +2,7 @@
 
 import { useAtom } from "jotai";
 import { useEffect, useState, useCallback } from "react";
-import { tradesAtom } from "@/global-sate";
+import { isConnectedAtom, tradesAtom } from "@/global-sate";
 
 const DEFAULT_SUBSCRIPTIONS = ["0~Coinbase~BTC~USD"];
 const URL = "wss://streamer.cryptocompare.com/v2?api_key=";
@@ -13,7 +13,7 @@ export const useCryptoCompareWebSocket = (
   subscriptions: string[] = DEFAULT_SUBSCRIPTIONS
 ) => {
   const [webSocket, setWebSocket] = useState<WebSocket | undefined>(undefined);
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useAtom(isConnectedAtom);
   const [, setTrades] = useAtom(tradesAtom);
 
   const subscribe = useCallback(() => {
