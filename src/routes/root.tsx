@@ -14,7 +14,7 @@ export const Root = () => {
         <nav className="flex justify-between items-center px-7">
           <div className="flex items-center gap-4">
             <h1 className="text-2xl font-bold text-white">Crypto Alerts</h1>
-            <div className="pt-1">
+            <div className="pt-[2px]">
               {isConnected ? (
                 <div className="w-3 h-3 bg-green-500 rounded-full" />
               ) : (
