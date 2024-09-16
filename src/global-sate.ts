@@ -1,3 +1,4 @@
 import { atom } from 'jotai'
+import { Trade } from '@/types'
 
-export const countAtom = atom<number>(0)
+export const tradesAtom = atom<Trade[]>([])

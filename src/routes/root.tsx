@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-import { StreamButton } from "../components/stream-button";
+import { StreamButton } from "@/components/stream-button";
 
 export const Root = () => {
   const location = useLocation();

@@ -2,10 +2,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { Root } from "./root";
-import { ErrorPage } from "../components/error-page";
-import { MonitorPage } from "../components/monitor-page";
-import { AlertsPage } from "../components/alerts-page";
+import { Root } from "@/routes/root";
+import { ErrorPage } from "@/components/error-page";
+import { MonitorPage } from "@/components/monitor-page";
+import { AlertsPage } from "@/components/alerts-page";
 
 export const Router = () => {
   const router = createBrowserRouter([
