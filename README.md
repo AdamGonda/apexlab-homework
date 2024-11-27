@@ -1,4 +1,4 @@
-# Apex homework
+# Websocket-web3-aggregator
 
 ## Stack
 
